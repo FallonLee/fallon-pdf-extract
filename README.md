@@ -1,9 +1,8 @@
 # fallon-pdf-extract
-PDF → Structured Markdown extraction skills
 
-**学术 / 教材 PDF → 结构化 Markdown 提取技能**
+**PDF → 结构化 Markdown 提取工具（CLI / 技能包）**
 
-保留标题层级（章/节/小节）、列表、表格、图注，并修复 PDF 文本层常见噪声：多栏错序、跨页段落、断词连字符、页眉页脚、脚注、列表断裂。适合「建知识库 / 精确提取学术文献」场景。扫描版 PDF 需 OCR，本技能不处理。
+将任意 PDF 提取为结构清晰的 Markdown：保留标题层级（章/节/小节）、列表、表格、图注，并修复 PDF 文本层常见噪声——多栏错序、跨页段落、断词连字符、页眉页脚、脚注、列表断裂。适用于学术文献、教材、技术手册、行业报告、项目文档、白皮书等几乎所有文本型 PDF。扫描版 PDF 需 OCR，本工具不处理。
 
 ## 功能亮点
 
@@ -13,19 +12,19 @@ PDF → Structured Markdown extraction skills
 | 多栏重排 | 按文本块 x 坐标 1D 聚类分栏，修复双栏阅读顺序 |
 | 跨页合并 | 段落 / 列表跨页续接（en 按小写续接、zh 按句末标点续接） |
 | 表格提取 | PyMuPDF `find_tables()` 检测，优先 `Table.to_markdown()`（支持合并单元格），过滤伪表 |
-| 图片提取 | 原图无损存盘 + 图注匹配，输出到输出目录根，可作二次素材（如小红书配图） |
+| 图片提取 | 原图无损存盘 + 图注匹配，输出到输出目录根，可作二次素材（如配图） |
 | 批量模式 | `--batch <dir>` 整目录处理，图片按文件隔离，单文件失败不中断 |
 | 章节定位 | `--chapters "8-17"` 从 TOC 自动定位，兼容罗马数字 / § / 多种章号格式 |
 
 ## 安装
 
-**方式 A — WorkBuddy 技能市场（推荐）**
-在 WorkBuddy 应用内「技能市场」搜索 `fallon-pdf-extract` 安装，依赖自动建本地 `.venv` 并安装 `pymupdf`。
+**方式 A — 技能市场（推荐）**
+在对应平台的技能市场搜索 `fallon-pdf-extract` 安装，依赖会自动建本地 `.venv` 并安装 `pymupdf`。
 
-**方式 B — 手动 / GitHub 克隆**
+**方式 B — 手动 / Git 克隆**
 ```bash
-git clone <本仓库地址> ~/.workbuddy/skills/fallon-pdf-extract
-cd ~/.workbuddy/skills/fallon-pdf-extract
+git clone <本仓库地址> fallon-pdf-extract
+cd fallon-pdf-extract
 python3 -m venv .venv
 # Linux / macOS
 .venv/bin/pip install pymupdf
@@ -82,7 +81,7 @@ fallon-pdf-extract/
 ├── README.md             # 本文件
 ├── requirements.txt      # pip 依赖（pymupdf）
 ├── .gitignore            # 排除 .venv / __pycache__
-├── skill.icon.png        # 技能图标（512×512，≤500KB）
+├── skill.icon.png        # 图标（512×512，≤500KB）
 ├── scripts/
 │   ├── extract_pdf.py    # 主提取脚本
 │   └── verify.py         # 提取质量校验脚本
@@ -93,11 +92,11 @@ fallon-pdf-extract/
     └── README.md         # 示例说明
 ```
 
-> 目录层级限制：Skill 包仅支持两级目录结构（根目录 / 二级目录 / 文件），故 `examples/` 内图片直接置于其根，不另设 `images/` 子目录。
+> 目录层级限制：打包仅支持两级目录结构（根目录 / 二级目录 / 文件），故 `examples/` 内图片直接置于其根，不另设 `images/` 子目录。
 
 ## 适用场景（触发词）
 
-把 PDF 转成 md、PDF 转 Markdown、知识库 PDF 提取、提炼 PDF 第 X 章/第 X 部分、学术 PDF 结构化、教材 PDF 转文字、breakbulk 知识库 PDF。
+把 PDF 转成 md、PDF 转 Markdown、PDF 提取、提炼 PDF 第 X 章/第 X 部分、PDF 结构化、PDF 转文字、知识库 PDF 提取。
 
 ## 已知边界
 
